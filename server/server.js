@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const jobRoutes = require('./routes/jobRoutes');
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/jobs', jobRoutes);
 
 app.get('/health', (req, res) => {
   res.json({ message: 'NexRole API is running!' });
