@@ -3,7 +3,6 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 
-// Protected Route component
 function PrivateRoute({ children, roles }) {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" />;
@@ -16,14 +15,9 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Default redirect */}
           <Route path="/" element={<Navigate to="/login" />} />
-
-          {/* 404 */}
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>
