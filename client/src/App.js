@@ -6,8 +6,11 @@ import Dashboard from './pages/employee/Dashboard';
 import BrowseJobs from './pages/employee/BrowseJobs';
 import MyApplications from './pages/employee/MyApplications';
 import Profile from './pages/employee/Profile';
+import JobDetail from './pages/employee/JobDetail';
 import HRDashboard from './pages/hr/HRDashboard';
 import PostJob from './pages/hr/PostJob';
+import ViewApplicants from './pages/hr/ViewApplicants';
+import VacancyReport from './pages/hr/VacancyReport';
 
 function PrivateRoute({ children, roles }) {
   const { user } = useAuth();
@@ -28,12 +31,15 @@ function App() {
           {/* Employee */}
           <Route path="/dashboard" element={<PrivateRoute roles={['employee']}><Dashboard /></PrivateRoute>} />
           <Route path="/jobs" element={<PrivateRoute roles={['employee']}><BrowseJobs /></PrivateRoute>} />
+          <Route path="/jobs/:jobId" element={<PrivateRoute roles={['employee']}><JobDetail /></PrivateRoute>} />
           <Route path="/my-applications" element={<PrivateRoute roles={['employee']}><MyApplications /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute roles={['employee']}><Profile /></PrivateRoute>} />
 
           {/* HR */}
           <Route path="/hr/dashboard" element={<PrivateRoute roles={['hr']}><HRDashboard /></PrivateRoute>} />
           <Route path="/hr/post-job" element={<PrivateRoute roles={['hr']}><PostJob /></PrivateRoute>} />
+          <Route path="/hr/applicants/:jobId" element={<PrivateRoute roles={['hr']}><ViewApplicants /></PrivateRoute>} />
+          <Route path="/hr/impact/:appId" element={<PrivateRoute roles={['hr']}><VacancyReport /></PrivateRoute>} />
 
           {/* Default */}
           <Route path="/" element={<Navigate to="/login" />} />
