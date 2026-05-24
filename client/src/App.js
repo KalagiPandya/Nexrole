@@ -11,6 +11,9 @@ import HRDashboard from './pages/hr/HRDashboard';
 import PostJob from './pages/hr/PostJob';
 import ViewApplicants from './pages/hr/ViewApplicants';
 import VacancyReport from './pages/hr/VacancyReport';
+import Promotions from './pages/hr/Promotions';
+import Notifications from './pages/shared/Notifications';
+import NotFound from './pages/shared/NotFound';
 
 function PrivateRoute({ children, roles }) {
   const { user } = useAuth();
@@ -40,10 +43,13 @@ function App() {
           <Route path="/hr/post-job" element={<PrivateRoute roles={['hr']}><PostJob /></PrivateRoute>} />
           <Route path="/hr/applicants/:jobId" element={<PrivateRoute roles={['hr']}><ViewApplicants /></PrivateRoute>} />
           <Route path="/hr/impact/:appId" element={<PrivateRoute roles={['hr']}><VacancyReport /></PrivateRoute>} />
+          <Route path="/hr/promotions" element={<PrivateRoute roles={['hr']}><Promotions /></PrivateRoute>} />
 
-          {/* Default */}
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          {/* Shared */}
+          <Route path="/notifications" element={<PrivateRoute roles={['employee','hr','admin']}><Notifications /></PrivateRoute>} />
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
