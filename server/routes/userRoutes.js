@@ -13,3 +13,16 @@ router.put('/profile', protect, updateProfile);
 router.get('/', protect, authorize('admin'), getAllUsers);
 
 module.exports = router;
+router.put('/:id/role', protect, authorize('admin'), async (req, res) => {
+  try {
+    const User = require('../models/User');
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { role: req.body.role },
+      { new: true }
+    ).select('-password');
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});

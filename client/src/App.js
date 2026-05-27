@@ -14,6 +14,7 @@ import VacancyReport from './pages/hr/VacancyReport';
 import Promotions from './pages/hr/Promotions';
 import Notifications from './pages/shared/Notifications';
 import NotFound from './pages/shared/NotFound';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 function PrivateRoute({ children, roles }) {
   const { user } = useAuth();
@@ -47,7 +48,8 @@ function App() {
 
           {/* Shared */}
           <Route path="/notifications" element={<PrivateRoute roles={['employee','hr','admin']}><Notifications /></PrivateRoute>} />
-
+  {/* Admin */}
+          <Route path="/admin/dashboard" element={<PrivateRoute roles={['admin']}><AdminDashboard /></PrivateRoute>} />
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
