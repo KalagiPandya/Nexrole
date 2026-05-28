@@ -78,6 +78,25 @@ export default function AdminDashboard() {
           ))}
         </div>
 
+{/* Analytics Button */}
+<div style={{ display: 'flex', gap: '12px', marginBottom: '32px' }}>
+  <button
+    onClick={() => navigate('/admin/analytics')}
+    style={{
+      background: 'linear-gradient(135deg, #1F4E79, #2E75B6)',
+      border: 'none',
+      color: 'white',
+      padding: '12px 24px',
+      borderRadius: '10px',
+      cursor: 'pointer',
+      fontSize: '15px',
+      fontWeight: '600'
+    }}
+  >
+    📊 View Analytics →
+  </button>
+</div>
+
         {/* User Management */}
         <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '24px' }}>
           <h3 style={{ margin: '0 0 20px', fontSize: '18px' }}>👥 User Management</h3>
